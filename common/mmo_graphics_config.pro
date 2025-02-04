@@ -30,7 +30,7 @@
 pro black_on_white_bg
   !p.background = !d.table_size-1                   ; White background   (color table 34)
   !p.color=0                                        ; Black Pen
-  !p.font = -1                                      ; Use default fonts
+  ;;!p.font = -1                                      ; Use default fonts
   
   return
 end
