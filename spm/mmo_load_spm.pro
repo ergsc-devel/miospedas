@@ -16,6 +16,16 @@
 ; no_update: the same as no_download, added for compatibility
 ; downloadonly: Set to download data files but skip creating tplot variables
 ;
+; :Examples:
+;   IDL> mmo_init
+;   MMO> timespan, '2021-08-10', 1, /day
+;   MMO> mmo_load_spm, uname='?????', pass='?????'  ;; Needs ID/pass for accessing Lv.2pre data
+;   MMO> tplot, 'mmo_spm_l2p_spm1_lv?_cnt'
+;
+; :History:
+; 2023/09/01: first protetype
+; 2025/02/25: 1st release ver.
+;
 ;-
 pro mmo_load_spm, $
   level = level, data_mode = data_mode, obs_mode = obs_mode, $
