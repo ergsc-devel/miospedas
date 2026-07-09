@@ -87,7 +87,7 @@ pro mmo_load_mgf, $
   if keyword_set(no_download) then no_download = 1 else $
     no_download = src.no_download or src.no_server or keyword_set(no_update)
 
-  ; ; https://chs.isee.nagoya-u.ac.jp/data/chs/satellite/mmo/cdf/mgf/l2pre/l/2025/01/bc_mmo_mgf_l2p_l_scf_20240903_r01-v00-00.cdf
+  ; ; https://chs.isee.nagoya-u.ac.jp/data/chs/satellite/mmo/cdf/mgf/l2pre/l/2024/12/bc_mmo_mgf_l2p_l_scf_20241201_r01-v00-00.cdf
 
   ; ; loop for data type
   foreach datatype, datatypes do begin
