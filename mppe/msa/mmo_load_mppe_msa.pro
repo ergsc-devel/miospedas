@@ -1,5 +1,5 @@
 ;+
-; NAME:    mmo_load_msa
+; NAME:    mmo_load_mppe_msa
 ; PURPOSE: Load and plot data from the MPPE/MSA instrument onboard the BepiColombo/MMO spacecraft
 ; Usage:   mmo_load_msa, level=level, data_mode=data_mode, obs_mode = obs_mode
 ; Currently only level='l2p' (Lv.2pre) and data_mode='l' (L-mode) are supported.
@@ -8,7 +8,7 @@
 ; Written by N. Kitamura, ISEE/Nagoya Univ., Japan (email: naritoshi.kitamura _at_ nagoya-u.jp)
 ; Created: June 29, 2026
 ;-
-pro mmo_load_msa, $
+pro mmo_load_mppe_msa, $
   level = level, data_mode = data_mode, obs_mode = obs_mode, $
   datatypes = datatypes, $
   varformat = varformat, $
@@ -88,7 +88,7 @@ pro mmo_load_msa, $
     if debug then dprint, 'files_out: ' + files_out
 
     ; ; Read CDF files to generate tplot variables
-    vn_prefix = 'mmo_msa_' + level + '_' + data_mode + obs_mode + '-' + datatype + '_'
+    vn_prefix = 'mmo_mppe_msa_' + level + '_' + data_mode + obs_mode + '-' + datatype + '_'
     spd_cdf2tplot, file = files_out, prefix = vn_prefix, varformat = varformat, tt2000 = tt2000, verbose = verbose
 
     ; ; Decorate created tplot variables
