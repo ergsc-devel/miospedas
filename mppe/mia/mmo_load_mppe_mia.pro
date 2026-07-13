@@ -1,14 +1,14 @@
 ;+
-; NAME:    mmo_load_mia
+; NAME:    mmo_load_mppe_mia
 ; PURPOSE: Load and plot data from the MPPE/MIA instrument onboard the BepiColombo/MMO spacecraft
-; Usage:   mmo_load_mia, level=level, data_mode=data_mode
+; Usage:   mmo_load_mppe_mia, level=level, data_mode=data_mode
 ; Currently only level='l2p' (Lv.2pre) and data_mode='l' (L-mode) are supported.
 ; With these options, the et-all and et-swall data are loaded by default.
 ;
 ; Written by T. Hori, ISEE/Nagoya Univ., Japan (email: tomo.hori _at_ nagoya-u.jp)
 ; Created: Oct. 20, 2025
 ;-
-pro mmo_load_mia, $
+pro mmo_load_mppe_mia, $
   level = level, data_mode = data_mode, obs_mode = obs_mode, $
   datatypes = datatypes, $
   varformat = varformat, $
