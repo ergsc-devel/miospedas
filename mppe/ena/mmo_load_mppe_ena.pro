@@ -1,5 +1,5 @@
 ;+
-;PROCEDURE: mmo_load_ena
+;PROCEDURE: mmo_load_mppe_ena
 ;
 ;PURPOSE:
 ;  Loads BepiColombo MMO MPPE-ENA data.
@@ -8,7 +8,7 @@
 ;
 ;EXAMPLE:
 ;  IDL> timespan, '20200409'
-;  IDL> mmo_load_ena, level='l2p', data_mode='l', obs_mode='mass', np=1, nm=4 ; load data for mass accumulation mode with 1 spin phase bins and 4 mass bins
+;  IDL> mmo_load_mppe_ena, level='l2p', data_mode='l', obs_mode='mass', np=1, nm=4 ; load data for mass accumulation mode with 1 spin phase bins and 4 mass bins
 ;
 ;NOTE:
 ;
@@ -17,7 +17,7 @@
 ;
 ;-
 
-pro mmo_load_ena, $
+pro mmo_load_mppe_ena, $
   level            = level,            $ ; data processing level ('l2p','l2pre','l2')
   data_modes       = data_modes,       $ ; data rate ('l')
   obs_modes        = obs_modes,        $ ; observational mode ('mass', 'cnt')

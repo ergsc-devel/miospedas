@@ -7,7 +7,7 @@
 ; 
 ; KEYWORDS:
 ;         level:            Indicates level of data processing. the default if no level is specified is 'l2'
-;         rate:        Instrument data rates for MGF include 'l' 'm1' 'm2' 'h'. The default is 'l'.
+;         data_mode:        Instrument data rate mode for MGF include 'l' 'm1' 'm2' 'h'. The default is 'l'.
 ;         obs_mode:         Instrument observation mode for MGF.
 ;         datatypes:        Currently all data types for FGM are retrieved (datatype not specified)
 ;         coord:            Reference frame of MGF data. The default is 'scf'.
@@ -38,7 +38,7 @@
 ; EXAMPLE:
 ;     
 ;     Load BepiColombo MMO-MGF low data rate mode (L-mode) data,
-;     MMO>  mmo_load_mgf, rate='l'
+;     MMO>  mmo_load_mgf, data_mode='l'
 ;     
 ; NOTES:
 ;         See the rules of the road.
@@ -51,7 +51,7 @@
 ;-
 
 pro mmo_load_mgf, $
-  level = level, rate = rate, obs_mode = obs_mode, $
+  level = level, data_mode = data_mode, obs_mode = obs_mode, $
   datatypes = datatypes, coord=coord, trange=trange, $
   get_support_data = get_support_data, suffix=suffix, varformat=varformat, $
   local_data_dir = local_data_dir, remote_data_dir = remote_data_dir, $
@@ -73,7 +73,7 @@ pro mmo_load_mgf, $
     dprint, 'Input m1 or m2 for M-mode! Exit!'
     return
   endif
-  if undefined(rate) then rate = 'l' else rate = strlowcase(rate)           ; ; L-mode
+  if undefined(data_mode) then data_mode = 'l' else data_mode = strlowcase(data_mode)           ; ; L-mode
   if undefined(obs_mode) then obs_mode = '' else obs_mode = strlowcase(obs_mode)                ; ; empty
   if undefined(datatype) then datatypes = ['spin'] else datatypes = strlowcase(datatype)        ; ; spin-fit
   if undefined(coord) then coord=['scf'] else coord = strlowcase(coord) ; ; MMO_SPACECRAFT
@@ -95,10 +95,10 @@ pro mmo_load_mgf, $
 
     ; ; set file path
     instdir     = 'mgf/'
-    local_path  =  local_data_dir + instdir + leveldir + '/' + rate + '/'
-    remote_path = remote_data_dir + instdir + leveldir + '/' + rate + '/'
+    local_path  =  local_data_dir + instdir + leveldir + '/' + data_mode + '/'
+    remote_path = remote_data_dir + instdir + leveldir + '/' + data_mode + '/'
 
-    datfn_prefix = 'bc_SAT_mgf_' + level + '_' + rate + '_' + coordinate + '_' ; ; bc_SAT_mgf_l2p_l_scf_
+    datfn_prefix = 'bc_SAT_mgf_' + level + '_' + data_mode + '_' + coordinate + '_' ; ; bc_SAT_mgf_l2p_l_scf_
     if keyword_set(data_version) then begin
       relfpathfmt  = 'YYYY/MM/' + datfn_prefix + 'YYYYMMDD_'+data_version+'.cdf' ; ; YYYY/MM/bc_SAT_mgf_l2p_l_scf_YYYYMMDD_r??-v??-??.cdf
     endif else begin
@@ -131,7 +131,7 @@ pro mmo_load_mgf, $
 
     ; ; Read CDF files to generate tplot variables
     if datatype eq 'spin' then datatype2 = '' else datatype2 = '-'+datatype
-    vn_prefix = 'mmo_mgf_' + level + '_' + rate + datatype2 + '_' 
+    vn_prefix = 'mmo_mgf_' + level + '_' + data_mode + datatype2 + '_' 
     cdf2tplot, file=files_out, prefix=vn_prefix, suffix=suffix, varformat=varformat, $
                get_support_data=get_support_data, verbose=verbose
 
@@ -139,7 +139,7 @@ pro mmo_load_mgf, $
     case level of
 
       'l2p': begin
-        case rate of
+        case data_mode of
           'l': begin
             case datatype of
               'spin': begin ; ; mmo_mgf_l2p_l_bvec_scf
@@ -158,7 +158,7 @@ pro mmo_load_mgf, $
       end
 
       'l2': begin
-        case rate of
+        case data_mode of
 
           'l': begin
             case datatype of
