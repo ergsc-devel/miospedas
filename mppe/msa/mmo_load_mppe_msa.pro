@@ -15,7 +15,7 @@ pro mmo_load_mppe_msa, $
   trange = trange, $
   local_data_dir = local_data_dir, remote_data_dir = remote_data_dir, $
   no_download = no_download, no_update = no_update, latest_version = latest_version, $
-  downloadonly = downloadonly, $
+  version = version, downloadonly = downloadonly, $
   uname = uname, passwd = passwd, $
   tt2000 = tt2000, $
   verbose = verbose, debug = debug
@@ -30,6 +30,12 @@ pro mmo_load_mppe_msa, $
   if undefined(data_mode) then data_mode = 'l' ; ; L-mode
   if undefined(obs_mode) then obs_mode = '' else obs_mode = '-' + obs_mode ; ; empty for L mode
   if undefined(datatype) then datatypes = ['eflux-moments-tof']
+  if undefined(latest_version) then latest_version = 1
+  if not undefined(version) then begin
+    latest_version = 0
+  endif else begin
+    version = 'r??-v??-??'
+  endelse
 
   ; ; Initialize the environmental variable and set some parameters for spd_downlaod
   mmo_init
@@ -60,7 +66,7 @@ pro mmo_load_mppe_msa, $
     remote_path = remote_data_dir + instdir + leveldir + '/' + data_mode + obs_mode + '/' + datatypedir + '/'
 
     datfn_prefix = 'bc_SAT_mppe-msa_' + level + '_' + data_mode + obs_mode + '-' + datatype + '_'
-    relfpathfmt = 'YYYY/MM/' + datfn_prefix + 'YYYYMMDD_r??-v??-??.cdf'
+    relfpathfmt = 'YYYY/MM/' + datfn_prefix + 'YYYYMMDD_'+version+'.cdf'
     relfpaths0 = file_dailynames( file_format = relfpathfmt, trange = trange, /unique, times = times)
 
     relfpaths = str_sub(relfpaths0, '_SAT_', '_mmo_') ; ; because "mm" is replaced with a minute value!
